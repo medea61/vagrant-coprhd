@@ -45,6 +45,21 @@ Vagrant.configure(2) do |config|
    config.vm.synced_folder ".", "/vagrant", disabled: true
   end
 
+  config.vm.provider "vcenter" do |v|
+   v.hostname = 'vc-4.virtual.nexellent.net'
+   v.username = 'rho@virtual'
+   v.password = 'Flex21!'
+   v.folder_name = 'nexellent/lab.nexellent.net/NeDev LAB'
+   v.datacenter_name = 'interxion'
+   v.computer_name = 'Room-110.1-INTERN'
+   v.datastore_name = 'vmware-dev1'
+   v.network_name = 'dvAccessVLAN_EMC-Mgmt-1'
+   v.linked_clones = true
+   v.memory = 8192
+   v.num_cpu = 4
+   config.vm.synced_folder ".", "/vagrant", disabled: true
+  end
+
   config.vm.provision "bootstrap", type: "shell", path: "bootstrap.sh"
   config.vm.provision "nginx", type: "shell", path: "nginx.sh"
   config.vm.provision "config", type: "shell" do |s|
