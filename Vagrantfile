@@ -43,6 +43,7 @@ Vagrant.configure(2) do |config|
    v.vmx["numvcpus"] = 2
    v.vmx["cpuid.coresPerSocket"] = 2
    config.vm.synced_folder ".", "/vagrant", disabled: true
+   config.vm.provision "vmware_fusion", type: "shell", path: "vmware_fusion.sh"
   end
 
   config.vm.provision "bootstrap", type: "shell", path: "bootstrap.sh"
